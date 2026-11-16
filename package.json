@@ -3,7 +3,7 @@
   "displayName": "OobsPreview",
   "description": "Better Obsidian preview in Qoder & VS Code: callouts, task markers, properties, wikilinks, embeds, highlights, tags, footnotes. Independent; not affiliated with Obsidian.",
   "version": "0.1.0",
-  "publisher": "yifuding",
+  "publisher": "yfding",
   "repository": {
     "type": "git",
     "url": "https://github.com/yifu-ding/OobsPreview-obsidian-preview-for-Qoder.git"

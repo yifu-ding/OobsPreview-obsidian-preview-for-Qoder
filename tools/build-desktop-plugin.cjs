@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const { spawnSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const target = path.resolve(process.argv[2] || path.join(os.homedir(), '.qoder-cn', 'app', 'dev-extensions', 'obsidian-md'));
@@ -42,7 +43,15 @@ fs.mkdirSync(browserDir, { recursive: true });
 fs.copyFileSync(path.join(ROOT, 'desktop', 'plugin.json'), path.join(pluginDir, 'plugin.json'));
 fs.copyFileSync(path.join(ROOT, 'desktop', 'node-main.cjs'), path.join(nodeDir, 'main.cjs'));
 copyDir(path.join(ROOT, 'src'), path.join(nodeDir, 'src'));
-copyDir(path.join(ROOT, 'node_modules'), path.join(target, 'node_modules'));
+
+// 依赖与 src 全部打进单文件 main.cjs：提交包有文件数上限，整棵 node_modules 拷贝占两百多个文件。
+const bundle = spawnSync('npx', ['--yes', 'esbuild', path.join(nodeDir, 'main.cjs'),
+  '--bundle', '--platform=node', '--target=node18', '--format=cjs',
+  '--outfile=' + path.join(nodeDir, 'main.cjs'), '--allow-overwrite', '--log-level=warning'],
+{ env: { ...process.env, NODE_PATH: path.join(ROOT, 'node_modules') }, stdio: 'inherit' });
+if (bundle.status !== 0) { throw new Error('esbuild 打包 node main 失败'); }
+fs.rmSync(path.join(nodeDir, 'src'), { recursive: true, force: true });
+fs.rmSync(path.join(target, 'node_modules'), { recursive: true, force: true });
 
 const { scoped, count } = scopeCss(fs.readFileSync(path.join(ROOT, 'media', 'obsidian.css'), 'utf8'));
 const css = fs.readFileSync(path.join(ROOT, 'desktop', 'theme.css'), 'utf8') + '\n' + scoped;

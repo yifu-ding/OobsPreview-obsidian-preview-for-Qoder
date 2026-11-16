@@ -5,6 +5,7 @@ desktop/**
 styles/**
 submission/**
 *.vsix
+*.zip
 .gitignore
 .wolf/**
 .DS_Store

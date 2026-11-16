@@ -3,4 +3,5 @@ node_modules/
 .DS_Store
 **/.DS_Store
 tools/.sample-render.html
+tools/.shots/
 submission/

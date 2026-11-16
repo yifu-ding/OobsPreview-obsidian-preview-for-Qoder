@@ -1,4 +1,4 @@
-<img src="media/icon.png" width="96" alt="OobsPreview 标志">
+<img src="icon.png" width="96" alt="OobsPreview 标志">
 
 # OobsPreview
 
@@ -39,7 +39,7 @@ created: 2026-05-09
 ---
 ```
 
-![[assets/properties.png|400]]
+<img src="assets/properties.png" width="400" alt="Properties（YAML frontmatter）渲染效果">
 
 
 ### Callout 提示块
@@ -64,7 +64,7 @@ created: 2026-05-09
 > 标题后加 `-` 表示默认折叠。
 ```
 
-![原生 callout、自定义标题、+/- 折叠](assets/callouts.png)
+<img src="assets/callouts.png" width="800" alt="Callout 提示块渲染效果">
 
 
 ### 自定义 Agent Callout（带 metadata）
@@ -91,7 +91,7 @@ created: 2026-05-09
 ```
 
 
-![[Customized callouts.png|700]]
+<img src="assets/Customized callouts.png" width="700" alt="自定义 Agent Callout 渲染效果">
 
 `[!type|metadata]` 把 metadata 放在标题行、正文占整行。内置 agent 类型：
 `codex`、`claude`、`deepseek`、`user`、`qwen`、`kimi`、`minimax` 等，各有专属色与图标。
@@ -124,7 +124,7 @@ created: 2026-05-09
   - [ ] 子任务待办
 ```
 
-![[tasks.png|300]]
+<img src="assets/tasks.png" width="300" alt="任务标记渲染效果">
 
 ### Wikilink 内部链接
 
@@ -132,7 +132,7 @@ created: 2026-05-09
 [[Obsidian-format]] · [[Obsidian-format|带别名的内部链接]] · [[Obsidian-format#链接]] · [[Obsidian-format#^block-id]]
 ```
 
-![[wikilinks.png|400]]
+<img src="assets/wikilinks.png" width="400" alt="Wikilink 内部链接渲染效果">
 
 按文件名在全库解析；含别名、标题、块目标。表格里别名竖线要转义为 `[[Note\|Alias]]`。
 
@@ -146,7 +146,7 @@ created: 2026-05-09
 ![[attachment.png|图片别名|100]]
 ```
 
-![[assets/embed-image.png|100]]
+<img src="assets/embed-image.png" width="100" alt="图片嵌入渲染效果">
 
 ### 笔记 / 标题 / 块嵌入
 
@@ -156,7 +156,7 @@ created: 2026-05-09
 ![[Demo Note#^demo-block]]
 ```
 
-![[assets/embed-note.png|500]]
+<img src="assets/embed-note.png" width="500" alt="笔记 / 标题 / 块嵌入渲染效果">
 
 整篇笔记、单个标题（`#Heading`）、单个块（`#^block-id`）都能行内嵌入；
 嵌入内部的 markdown 用同一套规则渲染。
@@ -167,7 +167,7 @@ created: 2026-05-09
 ==高亮文本==、 **加粗**、*斜体* ***加粗斜体***、`行内代码`
 ```
 
-![[assets/highlight.png|300]]
+<img src="assets/highlight.png" width="300" alt="高亮语法渲染效果">
 
 ### 注释（隐藏）
 
@@ -181,7 +181,7 @@ created: 2026-05-09
 注释前后的段落照常。
 ```
 
-![[comment.png|160]]
+<img src="assets/comment.png" width="160" alt="注释（隐藏）渲染效果">
 
 ### 标签
 
@@ -189,7 +189,7 @@ created: 2026-05-09
 行内标签 #obsidian 与嵌套标签 #markdown/nested
 ```
 
-![[assets/tags.png|350]]
+<img src="assets/tags.png" width="350" alt="标签渲染效果">
 
 
 ### 脚注
@@ -199,7 +199,7 @@ created: 2026-05-09
 
 [^note]: 脚注定义会渲染到文末的脚注区。
 ```
-![[assets/footnotes.png|500]]
+<img src="assets/footnotes.png" width="500" alt="脚注渲染效果">
 
 
 ### 块 ID
@@ -209,7 +209,7 @@ created: 2026-05-09
 
 引用它：[[Demo#^block-id]]
 ```
-![[assets/block-id.png|280]]
+<img src="assets/block-id.png" width="280" alt="块 ID 渲染效果">
 
 ### 编辑器补全（Qoder IDE / VS Code）
 
@@ -226,21 +226,21 @@ created: 2026-05-09
 ```
 
 
-![[wikilinks-2.png|400]]
+<img src="assets/wikilinks-2.png" width="400" alt="编辑器补全：笔记名补全">
 
 
 ```markdown
 [[README#]]
 ```
 
-![[supp1.png|400]]
+<img src="assets/supp1.png" width="400" alt="编辑器补全：章节标题补全">
 
 ## 主题
 
-强调色取自宿主主题（`--vscode-textLink-foreground`、`--vscode-editor-background` 等），
+强调色取自宿主主题（`--vode-textLink-foreground`、`--vscode-editor-background` 等），
 明暗主题自动跟随。任务 / callout 的语义色按设计固定。
 
-![[dark.png|800]]
+<img src="assets/dark.png" width="800" alt="深色主题跟随效果">
 
 ## 开发
 
@@ -251,9 +251,7 @@ npm test        # 离线单元 + 宿主契约测试
 npm run sample  # Obsidian-format.md 验收
 npm run styles  # 由 styles/preview-theme.css 重生成 media/obsidian.css
 npm run desktop # 组装 Qoder Desktop 插件
-npm run package # 打 .vsix
-node tools/make-screenshots.cjs  # 复现 assets/ 与 submission/screenshots/
-```
+npm run package # 打 .vsix```
 
 
 ## 许可与署名

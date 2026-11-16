@@ -37,7 +37,7 @@ created: 2026-05-09
 ---
 ```
 
-![[assets/properties.png|400]]
+<img src="assets/properties.png" width="400" alt="Properties (YAML frontmatter) rendered in the preview">
 
 
 ### Callouts
@@ -62,7 +62,7 @@ created: 2026-05-09
 > 标题后加 `-` 表示默认折叠。
 ```
 
-![Native callouts, custom titles, +/- folding](assets/callouts.png)
+<img src="assets/callouts.png" width="800" alt="Native callouts, custom titles, +/- folding">
 
 
 ### Custom agent callouts (with metadata)
@@ -89,7 +89,7 @@ created: 2026-05-09
 ```
 
 
-![[Customized callouts.png|700]]
+<img src="assets/Customized callouts.png" width="700" alt="Custom agent callouts with metadata">
 
 `[!type|metadata]` puts the metadata on the title row and the body on a full-width row. Built-in agent types:
 `codex`, `claude`, `deepseek`, `user`, `qwen`, `kimi`, `minimax`, etc., each with its own color and icon.
@@ -122,7 +122,7 @@ created: 2026-05-09
   - [ ] 子任务待办
 ```
 
-![[tasks.png|300]]
+<img src="assets/tasks.png" width="300" alt="Task markers rendered in the preview">
 
 ### Wikilinks
 
@@ -130,7 +130,7 @@ created: 2026-05-09
 [[Obsidian-format]] · [[Obsidian-format|带别名的内部链接]] · [[Obsidian-format#链接]] · [[Obsidian-format#^block-id]]
 ```
 
-![[wikilinks.png|400]]
+<img src="assets/wikilinks.png" width="400" alt="Wikilinks rendered in the preview">
 
 Resolved by file name across the vault; aliases, heading and block targets included. In tables, escape the alias pipe as `[[Note\|Alias]]`.
 
@@ -144,7 +144,7 @@ Resolved by file name across the vault; aliases, heading and block targets inclu
 ![[attachment.png|图片别名|100]]
 ```
 
-![[assets/embed-image.png|100]]
+<img src="assets/embed-image.png" width="100" alt="Image embed rendered in the preview">
 
 ### Note / heading / block embeds
 
@@ -154,7 +154,7 @@ Resolved by file name across the vault; aliases, heading and block targets inclu
 ![[Demo Note#^demo-block]]
 ```
 
-![[assets/embed-note.png|500]]
+<img src="assets/embed-note.png" width="500" alt="Note, heading and block embeds rendered in the preview">
 
 Whole notes, single headings (`#Heading`) and single blocks (`#^block-id`) all embed inline;
 markdown inside an embed renders with the same rules.
@@ -165,7 +165,7 @@ markdown inside an embed renders with the same rules.
 ==高亮文本==、 **加粗**、*斜体* ***加粗斜体***、`行内代码`
 ```
 
-![[assets/highlight.png|300]]
+<img src="assets/highlight.png" width="300" alt="Highlight syntax rendered in the preview">
 
 ### Comments (hidden)
 
@@ -179,7 +179,7 @@ markdown inside an embed renders with the same rules.
 注释前后的段落照常。
 ```
 
-![[comment.png|160]]
+<img src="assets/comment.png" width="160" alt="Comment syntax rendered in the preview">
 
 ### Tags
 
@@ -187,7 +187,7 @@ markdown inside an embed renders with the same rules.
 行内标签 #obsidian 与嵌套标签 #markdown/nested
 ```
 
-![[assets/tags.png|350]]
+<img src="assets/tags.png" width="350" alt="Tags rendered in the preview">
 
 
 ### Footnotes
@@ -197,7 +197,7 @@ markdown inside an embed renders with the same rules.
 
 [^note]: 脚注定义会渲染到文末的脚注区。
 ```
-![[assets/footnotes.png|500]]
+<img src="assets/footnotes.png" width="500" alt="Footnotes rendered in the preview">
 
 
 ### Block IDs
@@ -207,7 +207,7 @@ markdown inside an embed renders with the same rules.
 
 引用它：[[Demo#^block-id]]
 ```
-![[assets/block-id.png|280]]
+<img src="assets/block-id.png" width="280" alt="Block IDs rendered in the preview">
 
 ### Editor completion (Qoder IDE / VS Code)
 
@@ -224,21 +224,21 @@ For example:
 ```
 
 
-![[wikilinks-2.png|400]]
+<img src="assets/wikilinks-2.png" width="400" alt="Editor completion for note names">
 
 
 ```markdown
 [[README#]]
 ```
 
-![[supp1.png|400]]
+<img src="assets/supp1.png" width="400" alt="Editor completion for section headings">
 
 ## Theming
 
 Accent colors come from the host theme (`--vscode-textLink-foreground`, `--vscode-editor-background`, etc.);
 light and dark themes are followed automatically. Semantic task / callout colors are fixed by design.
 
-![[dark.png|800]]
+<img src="assets/dark.png" width="800" alt="Dark theme following the host theme">
 
 ## Development
 
