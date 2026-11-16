@@ -65,4 +65,22 @@ try {
 }
 assert.throws(() => assetChunk({ note: NOTE, path: '/etc/passwd', offset: 0 }), /OBSIDIAN_MD_ASSET_DENIED/);
 
+// 回归：笔记拷贝到没有 media/ 的目录后，HTML <img> 的文档相对路径落空，
+// 应回退到全库文件名解析。用自包含临时库（带 .obsidian 标记），不依赖 gitignore 的 submission/。
+const copyVault = fs.mkdtempSync(path.join(os.tmpdir(), 'om-copy-'));
+try {
+  fs.mkdirSync(path.join(copyVault, '.obsidian'));
+  fs.mkdirSync(path.join(copyVault, 'media'));
+  fs.mkdirSync(path.join(copyVault, 'docs'));
+  fs.copyFileSync(path.join(ROOT, 'media', 'icon.png'), path.join(copyVault, 'media', 'icon.png'));
+  const copiedNote = path.join(copyVault, 'docs', 'README.md');
+  fs.writeFileSync(copiedNote, '<img src="media/icon.png" width="96" alt="logo">\n');
+  const copied = renderFile(copiedNote);
+  const copiedRefs = Array.from(copied.html.matchAll(/data-om-img="([^"]*)"/g)).map((m) => unescapeAttr(m[1]));
+  assert.ok(copiedRefs.includes(path.join(copyVault, 'media', 'icon.png')),
+    '文档相对 media/ 缺失时 HTML img 应回退解析到库内 media/icon.png');
+} finally {
+  fs.rmSync(copyVault, { recursive: true, force: true });
+}
+
 console.log('desktop-rpc: ok (' + refs.length + ' images, ' + totalChars + ' base64 chars chunked)');

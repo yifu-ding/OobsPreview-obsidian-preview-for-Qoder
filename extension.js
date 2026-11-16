@@ -13,6 +13,7 @@ const obsidianTaskList = require('./src/tasklist');
 const obsidianBlockId = require('./src/blockid');
 const obsidianProperties = require('./src/properties');
 const obsidianWikilink = require('./src/wikilink');
+const obsidianAssetSrc = require('./src/asset-src');
 const { VaultIndex, IMAGE_EXT, OTHER_ASSET_EXT } = require('./src/vault');
 const { completionContext, completionItems, MetaIndex } = require('./src/complete');
 
@@ -239,7 +240,8 @@ function activate(context) {
         .use(obsidianTaskList)
         .use(obsidianBlockId)
         .use(obsidianProperties)
-        .use(obsidianWikilink, ctx);
+        .use(obsidianWikilink, ctx)
+        .use(obsidianAssetSrc, ctx);
     }
   };
 }

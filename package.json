@@ -4,6 +4,10 @@
   "description": "Better Obsidian preview in Qoder & VS Code: callouts, task markers, properties, wikilinks, embeds, highlights, tags, footnotes. Independent; not affiliated with Obsidian.",
   "version": "0.1.0",
   "publisher": "yifuding",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yifu-ding/OobsPreview-obsidian-preview-for-Qoder.git"
+  },
   "license": "MIT",
   "icon": "media/icon.png",
   "galleryBanner": {
@@ -37,7 +41,7 @@
     ]
   },
   "scripts": {
-    "test": "node test/highlight.test.js && node test/callout.test.js && node test/tasklist.test.js && node test/properties.test.js && node test/wikilink.test.js && node test/comment.test.js && node test/tag.test.js && node test/footnote.test.js && node test/blockid.test.js && node test/complete.test.js && node test/host-contract.test.js && node test/desktop-rpc.test.js",
+    "test": "node test/highlight.test.js && node test/callout.test.js && node test/tasklist.test.js && node test/properties.test.js && node test/wikilink.test.js && node test/comment.test.js && node test/tag.test.js && node test/footnote.test.js && node test/blockid.test.js && node test/complete.test.js && node test/host-contract.test.js && node test/asset-src.test.js && node test/desktop-rpc.test.js",
     "sample": "node tools/check-sample.js",
     "audit": "node tools/audit-render.js",
     "styles": "node tools/build-preview-css.mjs",

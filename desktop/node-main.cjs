@@ -155,7 +155,7 @@ function insideRoot(fsPath, root) {
 // 预览里没有宿主的相对路径解析器，图片也不会放行 file://。
 // 本地链接改成 data-om-open 交给视图点击处理；本地图片只发占位符 + data-om-img，
 // 真实字节由视图调 assetChunk 分块取回（单次 RPC 响应不能超宿主字符上限）。
-function rewriteAssets(html, notePath, root) {
+function rewriteAssets(html, notePath, root, resolveAsset) {
   const noteDir = path.dirname(notePath);
   let budget = MAX_TOTAL_IMAGE_BYTES;
 
@@ -175,7 +175,15 @@ function rewriteAssets(html, notePath, root) {
       const target = localTarget(value, noteDir);
       if (!target) { return match; }
       if (attr === 'src') {
-        const ref = assetRef(target);
+        // 文档相对路径不存在时（如拷贝出去的 README 引用原库图片），退回全库文件名解析。
+        let resolved = target;
+        if (!fs.existsSync(resolved) && resolveAsset) {
+          let decoded = value;
+          try { decoded = decodeURIComponent(value); } catch { /* 保留原值 */ }
+          const hit = resolveAsset(decoded, notePath);
+          if (hit) { resolved = hit; }
+        }
+        const ref = assetRef(resolved);
         return ref
           ? lead + 'src="' + PLACEHOLDER_IMG + '" data-om-img="' + escapeAttr(ref) + '"'
           : match;
@@ -237,7 +245,7 @@ function renderFile(fsPath) {
   return {
     version,
     title: path.basename(fsPath),
-    html: rewriteAssets(html, fsPath, root)
+    html: rewriteAssets(html, fsPath, root, ctx.resolveAsset)
   };
 }
 
