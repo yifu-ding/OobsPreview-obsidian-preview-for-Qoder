@@ -1,0 +1,12 @@
+.vscode/**
+test/**
+tools/**
+desktop/**
+styles/**
+submission/**
+*.vsix
+.gitignore
+.wolf/**
+.DS_Store
+**/.DS_Store
+FORM-COPY.md

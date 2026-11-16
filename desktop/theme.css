@@ -1,0 +1,249 @@
+/* Qoder Desktop 适配层。
+ *
+ * Desktop 没有 markdown 预览扩展点，视图跑在 Shadow DOM 里，宿主的设计令牌是
+ * 哈希名（--qf485f4 之类，随构建变化）。这里把它们映射成 obsidian.css 依赖的
+ * --vscode-* 名字，强调色一律取宿主令牌，不写死。
+ * 构建时 media/obsidian.css 里的 body 选择器会改写成 .om-preview。 */
+
+.om-preview {
+  --vscode-foreground: var(--qf485f4, #141414);
+  --vscode-descriptionForeground: var(--qea73d9, #636261);
+  --vscode-editor-background: var(--q4fa275, #fff);
+  --vscode-panel-border: var(--qecde42, #e6e6e6);
+  --vscode-focusBorder: var(--q3f3223, #4b6f5a);
+  --vscode-textLink-foreground: var(--q1250d9, #4d9868);
+  --vscode-errorForeground: var(--q87e1c1, #c0392b);
+  --vscode-inputValidation-errorBorder: var(--q87e1c1, #c0392b);
+  --vscode-editor-font-size: 13px;
+
+  --om-code-background: var(--q71fecd, rgba(127, 127, 127, 0.08));
+  --om-font-mono: var(--qbb674b, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  color: var(--vscode-foreground);
+  background: var(--vscode-editor-background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.om-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 32px 64px;
+}
+
+/* Edit 药丸：绝对定位浮在右上角，不占内容布局，也不随滚动移动。 */
+.om-pill {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 2;
+  padding: 3px 14px;
+  border: 1px solid var(--vscode-panel-border);
+  border-radius: 999px;
+  background: var(--vscode-editor-background);
+  color: var(--vscode-descriptionForeground);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.om-pill:hover {
+  color: var(--vscode-foreground);
+  border-color: var(--vscode-focusBorder);
+}
+
+.om-pill:focus-visible {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: 1px;
+}
+
+.om-pill[hidden] {
+  display: none;
+}
+
+.om-preview *,
+.om-preview *::before,
+.om-preview *::after {
+  box-sizing: border-box;
+}
+
+.om-status {
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border: 1px solid var(--vscode-inputValidation-errorBorder);
+  border-radius: 6px;
+  color: var(--vscode-errorForeground);
+  font-size: 13px;
+}
+
+.om-status[hidden] {
+  display: none;
+}
+
+.om-body {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ---------- 基础排版（Desktop 不提供预览样式，得自带） ---------- */
+
+.om-preview h1,
+.om-preview h2,
+.om-preview h3,
+.om-preview h4,
+.om-preview h5,
+.om-preview h6 {
+  margin: 1.4em 0 0.6em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.om-preview h1 { font-size: 1.9em; }
+.om-preview h2 { font-size: 1.55em; }
+.om-preview h3 { font-size: 1.3em; }
+.om-preview h4 { font-size: 1.12em; }
+.om-preview h5 { font-size: 1em; }
+.om-preview h6 { font-size: 0.92em; color: var(--vscode-descriptionForeground); }
+
+.om-preview h1:first-child,
+.om-preview h2:first-child,
+.om-preview h3:first-child {
+  margin-top: 0;
+}
+
+.om-preview p {
+  margin: 0 0 0.9em;
+}
+
+.om-preview a {
+  color: var(--vscode-textLink-foreground);
+  text-decoration: none;
+}
+
+.om-preview a:hover {
+  text-decoration: underline;
+}
+
+.om-preview ul,
+.om-preview ol {
+  margin: 0 0 0.9em;
+  padding-left: 1.6em;
+}
+
+.om-preview li {
+  margin: 0.25em 0;
+}
+
+.om-preview li > ul,
+.om-preview li > ol {
+  margin-bottom: 0;
+}
+
+.om-preview blockquote {
+  margin: 0 0 0.9em;
+  padding: 0.2em 1em;
+  border-left: 3px solid var(--vscode-panel-border);
+  color: var(--vscode-descriptionForeground);
+}
+
+.om-preview hr {
+  margin: 1.6em 0;
+  border: none;
+  border-top: 1px solid var(--vscode-panel-border);
+}
+
+.om-preview code {
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  background: var(--om-code-background);
+  font-family: var(--om-font-mono);
+  font-size: 0.88em;
+}
+
+.om-preview pre {
+  margin: 0 0 0.9em;
+  padding: 12px 14px;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: var(--om-code-background);
+  line-height: 1.55;
+}
+
+.om-preview pre > code {
+  padding: 0;
+  background: none;
+  font-size: 0.85em;
+}
+
+.om-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.om-preview table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 0 0.9em;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.94em;
+}
+
+.om-preview th,
+.om-preview td {
+  padding: 6px 12px;
+  border: 1px solid var(--vscode-panel-border);
+  text-align: left;
+}
+
+.om-preview th {
+  background: var(--om-code-background);
+  font-weight: 600;
+}
+
+.om-preview kbd {
+  padding: 1px 5px;
+  border: 1px solid var(--vscode-panel-border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--om-code-background);
+  font-family: var(--om-font-mono);
+  font-size: 0.85em;
+}
+
+.om-preview details {
+  margin: 0 0 0.9em;
+}
+
+.om-preview summary {
+  cursor: pointer;
+}
+
+.om-preview .obsidian-block-anchor {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.om-mermaid {
+  margin: 0 0 0.9em;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.om-mermaid svg {
+  max-width: 100%;
+  height: auto;
+}

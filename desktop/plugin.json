@@ -1,0 +1,43 @@
+{
+  "id": "local.obsidian-md",
+  "name": "Obsidian Markdown Preview",
+  "version": "0.0.10",
+  "engines": {
+    "qoder": ">=0.0.1"
+  },
+  "main": "dist/node/main.cjs",
+  "activationEvents": [
+    "onView:obsidian-md-preview"
+  ],
+  "permissions": [
+    "node.callService",
+    "files.readSessionResource"
+  ],
+  "contributes": {
+    "views": [
+      {
+        "id": "obsidian-md-preview",
+        "title": {
+          "default": "Obsidian Markdown Preview",
+          "translations": {
+            "zh-CN": "Obsidian Markdown 预览"
+          }
+        },
+        "location": "file.preview",
+        "entry": "dist/browser/view.cjs"
+      }
+    ],
+    "filePreviewers": [
+      {
+        "id": "obsidian-md",
+        "viewId": "obsidian-md-preview",
+        "filenameSuffixes": [
+          ".md",
+          ".markdown"
+        ],
+        "refreshPolicy": "live",
+        "priority": 100
+      }
+    ]
+  }
+}

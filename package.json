@@ -1,0 +1,54 @@
+{
+  "name": "oobspreview",
+  "displayName": "OobsPreview",
+  "description": "Better Obsidian preview in Qoder & VS Code: callouts, task markers, properties, wikilinks, embeds, highlights, tags, footnotes. Independent; not affiliated with Obsidian.",
+  "version": "0.1.0",
+  "publisher": "yifuding",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#F0F2F5",
+    "theme": "light"
+  },
+  "keywords": [
+    "obsidian",
+    "markdown",
+    "preview",
+    "callout",
+    "wikilink",
+    "zettelkasten",
+    "notes"
+  ],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "contributes": {
+    "markdown.markdownItPlugins": true,
+    "markdown.previewStyles": [
+      "./media/obsidian.css"
+    ]
+  },
+  "scripts": {
+    "test": "node test/highlight.test.js && node test/callout.test.js && node test/tasklist.test.js && node test/properties.test.js && node test/wikilink.test.js && node test/comment.test.js && node test/tag.test.js && node test/footnote.test.js && node test/blockid.test.js && node test/complete.test.js && node test/host-contract.test.js && node test/desktop-rpc.test.js",
+    "sample": "node tools/check-sample.js",
+    "audit": "node tools/audit-render.js",
+    "styles": "node tools/build-preview-css.mjs",
+    "desktop": "node tools/build-desktop-plugin.cjs",
+    "package": "npx --yes @vscode/vsce package --allow-missing-repository"
+  },
+  "devDependencies": {
+    "markdown-it": "^14.1.0"
+  },
+  "dependencies": {
+    "js-yaml": "^5.5.0",
+    "markdown-it-footnote": "^4.0.0"
+  }
+}
